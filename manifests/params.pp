@@ -17,7 +17,7 @@
 class datadog::params {
   $api_key = "your API key"
   $dd_url  = "https://app.datadoghq.com"
-
+  
   case $operatingsystem {
     "Ubuntu","Debian": {
       $rubygems_package = 'rubygems'
