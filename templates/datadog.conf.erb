@@ -244,12 +244,14 @@ mysql_pass: KK7juC7ZIcqAAXSQiE2IujGz
 # If this value isn't specified, the default parser assumes this log format:
 #     metric timestamp value key0=val0 key1=val1 ...
 #
+<%  if scope.lookupvar('::varnish_version') %>
 
 # -------------------------------------------------------------------------- # 
 # Varnish
 # -------------------------------------------------------------------------- # 
 # Path to varnishstat
-# varnishstat: /usr/bin/varnishstat
+ varnishstat: /usr/bin/varnishstat
+<% end %>
 
 ##############################################################################
 #################### NOTHING TO MODIFY AFTER THIS LINE #######################
