@@ -12,7 +12,7 @@
 #
 class datadog::redhat {
 
-  $datadogagent = $::operatingsystemrelease ? {
+  $agentname = $::operatingsystemrelease ? {
     /^5/ => 'datadog-agent-base',
     default => 'datadog-agent',
   }
@@ -24,17 +24,19 @@ class datadog::redhat {
       baseurl   => 'http://apt.datadoghq.com/rpm/',
     }
 
-    package { $datadogagent:
+    package { 'datadog-agent':
+      name    => $agentname,
       ensure  => latest,
       require => Yumrepo['datadog'],
     }
 
-    service { $datadogagent:
+    service { "datadog-agent":
+      name      => $agentname,
       ensure    => running,
       enable    => true,
       hasstatus => false,
       pattern   => 'dd-agent',
-      require   => Package[$datadogagent],
+      require   => Package["datadog-agent"],
     }
 
 }
