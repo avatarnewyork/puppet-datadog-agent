@@ -22,7 +22,7 @@ tags: <%= has_variable?("description") ? ''+description : '' %><%= has_variable?
 
 # Use the amazon EC2 instance-id instead of hostname (unless hostname is
 # explicitly set)
-use_ec2_instance_id: yes
+use_ec2_instance_id: no
 
 # Change port the agent is listening to
 # listen_port: 17123
@@ -51,8 +51,7 @@ apache_status_url: http://monitor:pWbR3bDm@127.0.0.1:80/server-status?auto
 # Ganglia port where gmetad is running
 #ganglia_port: 8651
 
-<%  @mysqld = scope.lookupvar('::mysqld') %>
-<% if @mysqld == 'exists' %>
+<%  if scope.lookupvar('::mysqld_exists') %>
 # -------------------------------------------------------------------------- #
 #   MySQL                                                                    #
 # -------------------------------------------------------------------------- #
