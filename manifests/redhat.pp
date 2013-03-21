@@ -31,7 +31,6 @@ class datadog::redhat {
     }
 
     service { "datadog-agent":
-      name      => $agentname,
       ensure    => running,
       enable    => true,
       hasstatus => false,
