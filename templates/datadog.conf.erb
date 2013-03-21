@@ -38,7 +38,7 @@ use_ec2_instance_id: no
 
 # Url to Apache's status page. Must have mod_status installed.
 # See http://httpd.apache.org/docs/2.0/mod/mod_status.html for details.
-apache_status_url: http://monitor:pWbR3bDm@127.0.0.1:80/server-status?auto
+apache_status_url: http://<%= ddapacheuser %>:<%= ddapachepwd %>@127.0.0.1:80/server-status?auto
 <% end %>
 
 # -------------------------------------------------------------------------- #
@@ -64,10 +64,10 @@ mysql_server: localhost
 # The latter requires the "REPLICATION CLIENT" privileges using a command like:
 # GRANT REPLICATION CLIENT ON *.* TO datadog;
 # http://dev.mysql.com/doc/refman/5.1/en/privileges-provided.html#priv_replication-client
-mysql_user: datadog
+mysql_user: <%= ddmysqluser ?>
 
 # MySQL user's password
-mysql_pass: KK7juC7ZIcqAAXSQiE2IujGz
+mysql_pass: <%= ddmysqlpwd ?>
 <% end %>
 # -------------------------------------------------------------------------- #
 #   PostgreSQL                                                               #
