@@ -38,7 +38,8 @@ use_ec2_instance_id: no
 
 # Url to Apache's status page. Must have mod_status installed.
 # See http://httpd.apache.org/docs/2.0/mod/mod_status.html for details.
-apache_status_url: http://<%= ddapacheuser %>:<%= ddapachepwd %>@127.0.0.1:80/server-status?auto
+# UNCOMMENT BELOW WHEN THIS BUG IS FIXED: https://github.com/DataDog/dd-agent/issues/410#issuecomment-15083410
+# apache_status_url: http://<%= ddapacheuser %>:<%= ddapachepwd %>@127.0.0.1:80/server-status?auto
 <% end %>
 
 # -------------------------------------------------------------------------- #
