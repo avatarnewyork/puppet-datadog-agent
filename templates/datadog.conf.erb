@@ -51,7 +51,7 @@ apache_status_url: http://monitor:pWbR3bDm@127.0.0.1:80/server-status?auto
 # Ganglia port where gmetad is running
 #ganglia_port: 8651
 
-<% has_variable?("mysqld") ? 'exists' %>
+<% if @mysqld == 'exists' %>
 # -------------------------------------------------------------------------- #
 #   MySQL                                                                    #
 # -------------------------------------------------------------------------- #
@@ -68,7 +68,7 @@ mysql_user: datadog
 
 # MySQL user's password
 mysql_pass: KK7juC7ZIcqAAXSQiE2IujGz
-<% : '' %>
+<% end %>
 # -------------------------------------------------------------------------- #
 #   PostgreSQL                                                               #
 # -------------------------------------------------------------------------- #
