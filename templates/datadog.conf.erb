@@ -64,10 +64,10 @@ mysql_server: localhost
 # The latter requires the "REPLICATION CLIENT" privileges using a command like:
 # GRANT REPLICATION CLIENT ON *.* TO datadog;
 # http://dev.mysql.com/doc/refman/5.1/en/privileges-provided.html#priv_replication-client
-mysql_user: <%= ddmysqluser ?>
+mysql_user: <%= ddmysqluser %>
 
 # MySQL user's password
-mysql_pass: <%= ddmysqlpwd ?>
+mysql_pass: <%= ddmysqlpwd %>
 <% end %>
 # -------------------------------------------------------------------------- #
 #   PostgreSQL                                                               #
