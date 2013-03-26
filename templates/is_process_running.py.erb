@@ -1,0 +1,13 @@
+import time
+import subprocess
+
+from checks import AgentCheck
+
+class IsProcessRunning(AgentCheck):
+    def check(self, instance):
+        proc = instance['name']
+        metric = "process." + proc
+        p = subprocess.Popen("ps ax | grep " + proc + " | grep -v grep | wc -l", stdout=subprocess.PIPE, shell=True)
+        (output, err) = p.communicate()
+        self.gauge(metric, int(output))
+
