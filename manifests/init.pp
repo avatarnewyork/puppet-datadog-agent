@@ -26,7 +26,7 @@
 class datadog(
   $api_key = 'your key',
   $puppet_run_reports = false,
-  $puppetmaster_user = 'puppet',
+  $puppetmaster_user = 'puppet',  
 ) inherits datadog::params {
 
   include datadog::params
@@ -64,4 +64,6 @@ class datadog(
     }
   }
 
+  include datadog::checks
+  
 }

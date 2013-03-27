@@ -2,3 +2,30 @@ init_config:
 
 instances:
     -   name: rsyslogd
+
+    -   name: crond
+
+    -   name: halow
+
+    -   name: halo
+
+    -   name: mcollectived
+<% $servertags = scope.function_split([description, ","]) -%>
+<% $servertags.each do |servertag| -%>
+<% if servertag == "ftp" -%>
+
+    -   name: vsftpd
+<% end -%>
+<% if servertag == "glusterfs" -%>
+
+    -   name: glusterfsd
+<% end -%>
+<% if servertag == "newrelic" -%>
+
+    -   name: newrelic-daemon
+<% end -%>
+<% if servertag == "sphinx" -%>
+
+    -   name: searchd
+<% end -%>
+<% end -%>

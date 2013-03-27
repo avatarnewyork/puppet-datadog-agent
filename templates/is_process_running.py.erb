@@ -9,5 +9,5 @@ class IsProcessRunning(AgentCheck):
         metric = "process." + proc
         p = subprocess.Popen("ps ax | grep " + proc + " | grep -v grep | wc -l", stdout=subprocess.PIPE, shell=True)
         (output, err) = p.communicate()
-        self.gauge(metric, int(output))
+        self.gauge(metric, int(output), sample_rate=0.5)
 
