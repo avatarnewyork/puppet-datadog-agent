@@ -1,0 +1,18 @@
+init_config:
+
+instances:
+<% $servertags = scope.function_split([description, ","]) -%>
+<% $servertags.each do |servertag| -%>
+<% if servertag == "glusterfs" -%>
+
+    -   name: /mnt/glusterfs
+<% end -%>
+<% if servertag == "glusterclient" -%>
+
+    -   name: /mnt/glusterfs
+<% end -%>
+<% if servertag == "ftp" -%>
+
+    -   name: /mnt/nfs
+<% end -%>
+<% end -%>

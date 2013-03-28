@@ -1,0 +1,13 @@
+import time
+import subprocess
+
+from checks import AgentCheck
+
+class IsMounted(AgentCheck):
+    def check(self, instance):
+        mountpnt = instance['name']
+        metric = "process." + proc
+        p = subprocess.Popen("mountpoint " + mountpnt + " -q || echo 1", stdout=subprocess.PIPE, shell=True)
+        (output, err) = p.communicate()
+        self.gauge(metric, int(output))
+

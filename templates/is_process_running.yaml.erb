@@ -20,6 +20,10 @@ instances:
 
     -   name: glusterfsd
 <% end -%>
+<% if servertag == "glusterclient" -%>
+
+    -   name: glusterfsd
+<% end -%>
 <% if servertag == "newrelic" -%>
 
     -   name: newrelic-daemon
