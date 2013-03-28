@@ -49,4 +49,23 @@ class datadog::checks {
     mode     => 0640,
     notify   => Service["datadog-agent"],
   }  
+
+  # tcp_check Check
+  file {"/etc/dd-agent/conf.d/is_mounted.yaml":
+    ensure   => file,
+    content  => template("datadog/is_mounted.yaml.erb"),
+    owner    => "dd-agent",
+    group    => "root",
+    mode     => 0640,
+    notify   => Service["datadog-agent"],
+    require  => File["/etc/dd-agent"],
+  }
+  file {"/usr/share/datadog/agent/checks.d/is_mounted.py":
+    ensure   => file,
+    content  => template("datadog/is_mounted.py.erb"),
+    owner    => "dd-agent",
+    group    => "root",
+    mode     => 0640,
+    notify   => Service["datadog-agent"],
+  }  
 }
