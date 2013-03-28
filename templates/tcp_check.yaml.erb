@@ -3,29 +3,60 @@ init_config:
 # To notify on every service, set a list of notified uses here.
 #
 #    notify:
-#        - user1@example.com
+#        - patrick@avatarnewyork.com
 #        - pagerduty
 
 
 instances:
-#    -   name: My first service
-#        host: myhost.example.com
-#        port: 8080
-#        timeout: 1
+<% $servertags = scope.function_split([description, ","]) -%>
+<% $servertags.each do |servertag| -%>
+<% if servertag == "ftp" -%>
+    -   name: ftp21
+        host: <%= scope.lookupvar('ipaddress_eth1') %>
+        port: 21
+        timeout: 2
 
          # The (optional) window and threshold parameters allow you to trigger
          # alerts only if the check fails x times within the last y attempts
          # where x is the threshold and y is the window.
 
-#        threshold: 3
-#        window: 5
+        threshold: 3
+        window: 5
 
-#    -   name: My second service
-#        host: 127.0.0.1
-#        port: 80
+        notify:
+           - patrick@avatarnewyork.com
 
-         # For service-specific notifications, you can optionally specify
-         # a list of users to notify within the service configuration.
-#        notify:
-#           - user2@example.com
-#           - pagerduty
+<% end -%>
+<% if servertag == "sphinx" -%>
+    -   name: sphinx9312
+        host: <%= scope.lookupvar('ipaddress_eth1') %>
+        port: 9312
+        timeout: 2
+
+         # The (optional) window and threshold parameters allow you to trigger
+         # alerts only if the check fails x times within the last y attempts
+         # where x is the threshold and y is the window.
+
+        threshold: 3
+        window: 5
+
+        notify:
+           - patrick@avatarnewyork.com
+
+    -   name: sphinx9306
+        host: <%= scope.lookupvar('ipaddress_eth1') %>
+        port: 9306
+        timeout: 2
+
+         # The (optional) window and threshold parameters allow you to trigger
+         # alerts only if the check fails x times within the last y attempts
+         # where x is the threshold and y is the window.
+
+        threshold: 3
+        window: 5
+
+        notify:
+           - patrick@avatarnewyork.com
+
+<% end -%>
+<% end -%>
