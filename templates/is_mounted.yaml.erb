@@ -4,15 +4,17 @@ instances:
 <% $servertags = scope.function_split([description, ","]) -%>
 <% $servertags.each do |servertag| -%>
 <% if servertag == "glusterfs" -%>
+    -   name: glusterfs
+        mountpoint: /mnt/glusterfs
 
-    -   name: /mnt/glusterfs
 <% end -%>
 <% if servertag == "glusterclient" -%>
-
-    -   name: /mnt/glusterfs
+    -   name: glusterclient
+        mountpoint: /mnt/glusterfs
 <% end -%>
-<% if servertag == "ftp" -%>
+<% if servertag == "nfs" -%>
+    -   name: nfs
+        mountpoint: /mnt/nfs
 
-    -   name: /mnt/nfs
 <% end -%>
 <% end -%>
