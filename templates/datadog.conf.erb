@@ -13,8 +13,8 @@ api_key: <%= api_key %>
 # to the /tmp/ directory.  
 debug_mode: no 
 
-# Force the hostname to whatever you want.
-hostname: <%= fqdn %>
+# Force the hostname to whatever you want. <%= fqdn %>
+hostname: <%= hostname %>
 
 # Set the host's tags
 tags: <%= has_variable?("description") ? ''+description : '' %><%= has_variable?("associatedDomain") ? ','+associatedDomain : '' %>
