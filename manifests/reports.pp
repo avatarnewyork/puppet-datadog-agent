@@ -51,12 +51,13 @@ class datadog::reports(
     owner    => $puppetmaster_user,
     group    => "root",
     mode     => 0640,
-    require  => File["/etc/dd-agent"],
+    require  => [File["/etc/dd-agent"], Package['dogapi']],
   }
 
   package{'dogapi':
     ensure    => 'installed',
     provider  => 'gem',
+    require  => File["/etc/dd-agent"],
   }
 
 }

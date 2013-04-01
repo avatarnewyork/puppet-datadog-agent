@@ -29,6 +29,7 @@ class datadog::checks {
     group    => "root",
     mode     => 0640,
     notify   => Service["datadog-agent"],
+    require  => File["/etc/dd-agent"],    
   }
 
   # tcp_check Check
@@ -48,6 +49,7 @@ class datadog::checks {
     group    => "root",
     mode     => 0640,
     notify   => Service["datadog-agent"],
+    require  => File["/etc/dd-agent"],    
   }  
 
   # tcp_check Check
@@ -67,5 +69,6 @@ class datadog::checks {
     group    => "root",
     mode     => 0640,
     notify   => Service["datadog-agent"],
+    require  => File["/etc/dd-agent"],
   }  
 }
