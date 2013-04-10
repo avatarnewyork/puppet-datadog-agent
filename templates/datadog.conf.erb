@@ -55,7 +55,7 @@ dogstatsd_interval : 30
 # Ganglia port where gmetad is running
 #ganglia_port: 8651
 
-<%  if scope.lookupvar('::mysqld_exists') %>
+<%  if @mysqld_exists %>
 # -------------------------------------------------------------------------- #
 #   MySQL                                                                    #
 # -------------------------------------------------------------------------- #
@@ -248,7 +248,7 @@ mysql_pass: <%= ddmysqlpwd %>
 # If this value isn't specified, the default parser assumes this log format:
 #     metric timestamp value key0=val0 key1=val1 ...
 #
-<%  if scope.lookupvar('::varnish_version') %>
+<%  if @varnish_version %>
 
 # -------------------------------------------------------------------------- # 
 # Varnish
