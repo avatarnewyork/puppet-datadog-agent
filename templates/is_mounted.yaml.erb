@@ -17,4 +17,8 @@ instances:
         mountpoint: /mnt/nfs
 
 <% end -%>
+<% if servertag == "blockstorage" -%>
+    -   name: blockstorage
+        mountpoint: /mnt/lv
+<% end -%>
 <% end -%>
