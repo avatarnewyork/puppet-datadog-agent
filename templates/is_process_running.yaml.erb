@@ -32,4 +32,10 @@ instances:
 
     -   name: searchd
 <% end -%>
+<% if servertag == "fileserver" -%>
+
+    -   name: nfsd
+    -   name: rpc
+    -   name: lockd
+<% end -%>
 <% end -%>
