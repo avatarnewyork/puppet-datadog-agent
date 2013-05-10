@@ -1,0 +1,21 @@
+import datetime
+import subprocess
+import sys
+from checks import AgentCheck
+
+class SSLCheckExpireDays(AgentCheck):
+    def check(self, instance):
+        metric = "ssl.expire_in_days"
+        cert = instance['cert']
+        date_format = "%m/%d/%Y"
+        p = subprocess.Popen("openssl x509 -noout -in " + cert + " -enddate | sed 's/^[a-zA-Z]*=//g' | xargs --null date +" + date_format + " -d",stdout=subprocess.PIPE, shell=True)
+        (output, err) = p.communicate()
+        if output:
+            output = output.rstrip("\n")
+            d0 = datetime.datetime.today()
+            d1 = datetime.datetime.strptime(output, date_format)
+            delta = d1 - d0
+            self.gauge(metric, int(delta.days))
+        else:
+            self.gauge(metric, -1)
+

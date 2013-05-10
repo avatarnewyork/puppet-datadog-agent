@@ -1,0 +1,13 @@
+init_config:
+
+instances:
+<% $servertags = scope.function_split([description, ","]) -%>
+<% $servertags.each do |servertag| -%>
+<% $domains = scope.function_split([associatedDomain, ","]) -%>
+<% $domains.each do |domain| -%>
+<% if servertag == "https" -%>
+    - cert: /etc/httpd/ssl/<%= domain -%>.crt
+
+<% end -%>
+<% end -%>
+<% end -%>

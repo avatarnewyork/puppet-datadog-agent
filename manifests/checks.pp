@@ -71,4 +71,24 @@ class datadog::checks {
     notify   => Service["datadog-agent"],
     require  => File["/etc/dd-agent"],
   }  
+
+  # ssl_check
+  file {"/etc/dd-agent/conf.d/ssl_check_expire_days.yaml":
+    ensure   => file,
+    content  => template("datadog/ssl_check_expire_days.yaml.erb"),
+    owner    => "dd-agent",
+    group    => "root",
+    mode     => 0640,
+    notify   => Service["datadog-agent"],
+    require  => File["/etc/dd-agent"],
+  }
+  file {"/usr/share/datadog/agent/checks.d/ssl_check_expire_days.py":
+    ensure   => file,
+    content  => template("datadog/ssl_check_expire_days.py.erb"),
+    owner    => "dd-agent",
+    group    => "root",
+    mode     => 0640,
+    notify   => Service["datadog-agent"],
+    require  => File["/etc/dd-agent"],
+  }  
 }
