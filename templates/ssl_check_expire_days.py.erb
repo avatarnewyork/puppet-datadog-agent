@@ -1,3 +1,4 @@
+import time
 import datetime
 import subprocess
 import sys
@@ -13,7 +14,7 @@ class SSLCheckExpireDays(AgentCheck):
         if output:
             output = output.rstrip("\n")
             d0 = datetime.datetime.today()
-            d1 = datetime.datetime.strptime(output, date_format)
+	    d1 = datetime.datetime(*(time.strptime(output, date_format)[0:3]))
             delta = d1 - d0
             self.gauge(metric, int(delta.days))
         else:
