@@ -91,4 +91,23 @@ class datadog::checks {
     notify   => Service["datadog-agent"],
     require  => File["/etc/dd-agent"],
   }  
+  # apache mod_status check
+  file {"/etc/dd-agent/conf.d/apache.yaml":
+    ensure   => file,
+    content  => template("datadog/apache.yaml.erb"),
+    owner    => "dd-agent",
+    group    => "root",
+    mode     => 0640,
+    notify   => Service["datadog-agent"],
+    require  => File["/etc/dd-agent"],
+  }
+  file {"/usr/share/datadog/agent/checks.d/apache.py":
+    ensure   => file,
+    content  => template("datadog/apache.py.erb"),
+    owner    => "dd-agent",
+    group    => "root",
+    mode     => 0640,
+    notify   => Service["datadog-agent"],
+    require  => File["/etc/dd-agent"],
+  }  
 }
