@@ -34,6 +34,4 @@ class datadog::params {
   $ddmysqlpwd  = hiera("ddmysqlpwd")
   $ddapacheuser = hiera("ddapacheuser")
   $ddapachepwd = hiera("ddapachepwd")
-  $ddapacheuser = hiera("ddapacheuser")
-  $ddapachepwd = hiera("ddapachepwd")
 }
