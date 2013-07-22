@@ -55,7 +55,7 @@ dogstatsd_interval : 30
 # Ganglia port where gmetad is running
 #ganglia_port: 8651
 
-<%  if @mysqld_exists %>
+<%  if @mysqld_exists == "true" %>
 # -------------------------------------------------------------------------- #
 #   MySQL                                                                    #
 # -------------------------------------------------------------------------- #
