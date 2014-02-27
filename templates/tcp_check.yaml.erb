@@ -25,6 +25,7 @@ instances:
 
         notify:
            - patrick@avatarnewyork.com
+	   - pagerduty
 
 <% end -%>
 <% if servertag == "sphinx" -%>
@@ -42,6 +43,7 @@ instances:
 
         notify:
            - patrick@avatarnewyork.com
+	   - pagerduty
 
     -   name: sphinx9306
         host: <%= scope.lookupvar('ipaddress_eth1') %>
@@ -57,6 +59,7 @@ instances:
 
         notify:
            - patrick@avatarnewyork.com
+	   - pagerduty
 
 <% end -%>
 <% end -%>
