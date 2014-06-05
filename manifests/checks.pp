@@ -31,10 +31,17 @@ class datadog::checks {
     notify   => Service["datadog-agent"],
     require  => File["/etc/dd-agent"],    
   }
-
+  
   # tcp_check Check
+  if size(grep([$description],"/(ftp|sphinx)/")) < 1
+  {
+    $tcp_ensure = "absent"    
+    } else {
+    $tcp_ensure = "file"
+  }
+
   file {"/etc/dd-agent/conf.d/tcp_check.yaml":
-    ensure   => file,
+    ensure   => $tcp_ensure,
     content  => template("datadog/tcp_check.yaml.erb"),
     owner    => "dd-agent",
     group    => "root",
@@ -43,7 +50,7 @@ class datadog::checks {
     require  => File["/etc/dd-agent"],
   }
   file {"/usr/share/datadog/agent/checks.d/tcp_check.py":
-    ensure   => file,
+    ensure   => $tcp_ensure,
     content  => template("datadog/tcp_check.py.erb"),
     owner    => "dd-agent",
     group    => "root",
@@ -52,9 +59,16 @@ class datadog::checks {
     require  => File["/etc/dd-agent"],    
   }  
 
-  # tcp_check Check
+  # nfs Check
+  if size(grep([$description],"nfs")) < 1
+  {
+    $nfs_ensure = "absent"    
+    } else {
+    $nfs_ensure = "file"
+  }
+
   file {"/etc/dd-agent/conf.d/is_mounted.yaml":
-    ensure   => file,
+    ensure   => $nfs_ensure,
     content  => template("datadog/is_mounted.yaml.erb"),
     owner    => "dd-agent",
     group    => "root",
@@ -63,7 +77,7 @@ class datadog::checks {
     require  => File["/etc/dd-agent"],
   }
   file {"/usr/share/datadog/agent/checks.d/is_mounted.py":
-    ensure   => file,
+    ensure   => $nfs_ensure,
     content  => template("datadog/is_mounted.py.erb"),
     owner    => "dd-agent",
     group    => "root",
@@ -73,8 +87,15 @@ class datadog::checks {
   }  
 
   # ssl_check
+  if size(grep([$description],"https")) < 1
+  {
+    $ssl_ensure = "absent"    
+    } else {
+    $ssl_ensure = "file"
+  }
+
   file {"/etc/dd-agent/conf.d/ssl_check_expire_days.yaml":
-    ensure   => file,
+    ensure   => $ssl_ensure,
     content  => template("datadog/ssl_check_expire_days.yaml.erb"),
     owner    => "dd-agent",
     group    => "root",
@@ -83,17 +104,26 @@ class datadog::checks {
     require  => File["/etc/dd-agent"],
   }
   file {"/usr/share/datadog/agent/checks.d/ssl_check_expire_days.py":
-    ensure   => file,
+    ensure   => $ssl_ensure,
     content  => template("datadog/ssl_check_expire_days.py.erb"),
     owner    => "dd-agent",
     group    => "root",
     mode     => 0640,
     notify   => Service["datadog-agent"],
     require  => File["/etc/dd-agent"],
-  }  
+  }
+
+  
   # apache mod_status check
+  if size(grep([$description],"http")) < 1
+  {
+    $http_ensure = "absent"    
+    } else {
+    $http_ensure = "file"
+  }
+
   file {"/etc/dd-agent/conf.d/apache.yaml":
-    ensure   => file,
+    ensure   => $http_ensure,
     content  => template("datadog/apache.yaml.erb"),
     owner    => "dd-agent",
     group    => "root",
@@ -102,7 +132,7 @@ class datadog::checks {
     require  => File["/etc/dd-agent"],
   }
   file {"/usr/share/datadog/agent/checks.d/apache.py":
-    ensure   => file,
+    ensure   => $http_ensure,
     content  => template("datadog/apache.py.erb"),
     owner    => "dd-agent",
     group    => "root",
