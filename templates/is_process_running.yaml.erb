@@ -10,6 +10,9 @@ instances:
     -   name: halo
 
     -   name: mcollectived
+
+    -   name: driveclient
+
 <% $servertags = scope.function_split([description, ","]) -%>
 <% $servertags.each do |servertag| -%>
 <% if servertag == "ftp" -%>
