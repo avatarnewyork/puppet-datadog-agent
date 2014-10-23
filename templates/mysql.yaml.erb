@@ -1,0 +1,11 @@
+init_config:
+
+instances:
+<% $servertags = scope.function_split([description, ","]) -%>
+<% $servertags.each do |servertag| -%>
+<% if servertag == "mysql" -%>
+  - server: localhost
+    user: datadog
+    pass: <%= ddmysqlpwd %>
+<% end -%>
+<% end -%>

@@ -139,5 +139,24 @@ class datadog::checks {
     mode     => 0640,
     notify   => Service["datadog-agent"],
     require  => File["/etc/dd-agent"],
-  }  
+  }
+
+  # mysql check
+  if size(grep([$description],"mysql")) < 1
+  {
+    $mysql_ensure = "absent"    
+    } else {
+    $mysql_ensure = "file"
+    }
+    
+    file {"/etc/dd-agent/conf.d/mysql.yaml":
+      ensure   => $mysql_ensure,
+      content  => template("datadog/mysql.yaml.erb"),
+      owner    => "dd-agent",
+      group    => "root",
+      mode     => 0640,
+      notify   => Service["datadog-agent"],
+      require  => File["/etc/dd-agent"],
+    }
 }
+
