@@ -9,3 +9,10 @@ instances:
     pass: <%= ddmysqlpwd %>
 <% end -%>
 <% end -%>
+<% $servertags = scope.function_split([description, ","]) -%>
+<% $servertags.each do |servertag| -%>
+<% if servertag == "slave" -%>
+    options: 
+        replication: 1
+<% end -%>
+<% end -%>
