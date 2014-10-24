@@ -13,7 +13,7 @@
 class datadog::redhat {
 
   $agentname = $::operatingsystemrelease ? {
-    /^5/ => 'datadog-agent-base',
+  #  /^5/ => 'datadog-agent-base',
     default => 'datadog-agent',
   }
   
