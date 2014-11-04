@@ -1,0 +1,10 @@
+init_config:
+
+instances:
+<% $servertags = scope.function_split([description, ","]) -%>
+<% $servertags.each do |servertag| -%>
+<% if servertag == "memcache" -%>
+  - url: localhost
+    port: 11211
+<% end -%>
+<% end -%>

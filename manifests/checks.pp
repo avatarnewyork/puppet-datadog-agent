@@ -158,5 +158,39 @@ class datadog::checks {
       notify   => Service["datadog-agent"],
       require  => File["/etc/dd-agent"],
     }
+  # memcache check
+  if size(grep([$description],"memcache")) < 1
+  {
+    $memcache_ensure = "absent"    
+    } else {
+    $memcache_ensure = "file"
+    }
+    
+    file {"/etc/dd-agent/conf.d/memcache.yaml":
+      ensure   => $memcache_ensure,
+      content  => template("datadog/memcache.yaml.erb"),
+      owner    => "dd-agent",
+      group    => "root",
+      mode     => 0640,
+      notify   => Service["datadog-agent"],
+      require  => File["/etc/dd-agent"],
+    }
+  # varnish check
+  if size(grep([$description],"varnish")) < 1
+  {
+    $varnish_ensure = "absent"    
+    } else {
+    $varnish_ensure = "file"
+    }
+    
+    file {"/etc/dd-agent/conf.d/varnish.yaml":
+      ensure   => $varnish_ensure,
+      content  => template("datadog/varnish.yaml.erb"),
+      owner    => "dd-agent",
+      group    => "root",
+      mode     => 0640,
+      notify   => Service["datadog-agent"],
+      require  => File["/etc/dd-agent"],
+    }
 }
 

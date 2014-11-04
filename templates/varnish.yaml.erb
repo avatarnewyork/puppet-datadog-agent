@@ -1,0 +1,9 @@
+init_config:
+
+instances:
+<% $servertags = scope.function_split([description, ","]) -%>
+<% $servertags.each do |servertag| -%>
+<% if servertag == "varnish" -%>
+  - varnishstat: /usr/bin/varnishstat
+<% end -%>
+<% end -%>
