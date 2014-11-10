@@ -166,9 +166,9 @@ class datadog::checks {
     $memcache_ensure = "file"
     }
     
-    file {"/etc/dd-agent/conf.d/memcache.yaml":
+    file {"/etc/dd-agent/conf.d/mcache.yaml":
       ensure   => $memcache_ensure,
-      content  => template("datadog/memcache.yaml.erb"),
+      content  => template("datadog/mcache.yaml.erb"),
       owner    => "dd-agent",
       group    => "root",
       mode     => 0640,
