@@ -12,6 +12,10 @@
 #
 class datadog::checks {
 
+  file {"/usr/share/datadog/agent/checks.d":
+    ensure => directory,
+  }
+  
   # is_process_running Check
   file {"/etc/dd-agent/conf.d/is_process_running.yaml":
     ensure   => file,
