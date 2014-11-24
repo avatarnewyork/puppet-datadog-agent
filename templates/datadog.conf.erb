@@ -33,6 +33,10 @@ dogstatsd_interval : 30
 ## Autostart - restart if agent dies will create multiple processes
 autorestart: true
 
+# Additional directory to look for Datadog checks
+additional_checksd: /etc/dd-agent/checks.d/
+
+
 # ========================================================================== #
 # Service-specific configuration                                             #
 # ========================================================================== #
