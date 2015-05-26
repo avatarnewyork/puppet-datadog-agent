@@ -55,7 +55,7 @@ class datadog::reports(
   }
 
   package{'dogapi':
-    ensure    => 'installed',
+    ensure    => '1.8.1',
     provider  => 'gem',
     require  => File["/etc/dd-agent"],
   }
