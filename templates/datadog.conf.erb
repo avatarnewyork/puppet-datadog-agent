@@ -296,13 +296,13 @@ keys:ddagent
 # DogStatsd logging
 
 [logger_root]
-level:INFO
+level:WARN
 handlers:
 propagate:0
 qualname:root
 
 [logger_dogstatsd]
-level:INFO
+level:WARN
 handlers:dogstatsd
 propagate:0
 qualname:dogstatsd
@@ -315,7 +315,7 @@ qualname:checks
 
 [handler_dogstatsd]
 class:FileHandler
-level:INFO
+level:WARN
 formatter:ddagent
 args:('/var/log/datadog/dogstatsd.log', 'a')
 
