@@ -162,6 +162,15 @@ if size(grep([$description],"mysql")) < 1
     notify   => Service["datadog-agent"],
     require  => File["/etc/dd-agent"],
   }
+  file {"/etc/dd-agent/checks.d/mysql.py":
+    ensure   => $mysql_ensure,
+    content  => template("datadog/mysql.py.erb"),
+    owner    => "dd-agent",
+    group    => "root",
+    mode     => 0754,
+    notify   => Service["datadog-agent"],
+    require  => File["/etc/dd-agent"],
+  }
   # memcache check
   if size(grep([$description],"memcache")) < 1
   {
